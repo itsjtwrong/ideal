@@ -1,17 +1,43 @@
 <template>
   <view class="container">
-    <text class="text-color-primary">My Vue Native App</text>
-    </view>
+    <flat-list
+      class="main-list"
+      :data="[{title: 'Baked Pizza', recs: 43, key:'0'}, {title: 'The Beanhive', recs: 10, key:'1'}]"
+      :render-item="(item) => renderList(item)">
+  </view>
 </template>
- 
+
+<script>
+  import React from 'react';
+  import {Text, View} from 'react-native';
+  export default {
+    methods: {
+      renderList: function(item) {
+        return (
+          <View class="item-container"
+            style={{paddingLeft:8, borderColor:"#000", borderBottomWidth: 2, borderTopWidth: 2}}>
+            <Text
+              style={{marginBottom:30, marginTop:10}}>
+              {item.item.title} {item.item.recs} people reccomend this space
+            </Text>
+          </View>
+        )
+      }
+    }
+  }
+</script>
+
 <style>
 .container {
   background-color: white;
-  align-items: center;
-  justify-content: center;
   flex: 1;
 }
-.text-color-primary {
-  color: blue;
+.main-list {
+  margin-top: 30;
 }
+
+.list-item {
+  color:red;
+}
+
 </style>
